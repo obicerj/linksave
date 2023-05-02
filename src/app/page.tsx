@@ -51,6 +51,10 @@ export default function Home() {
       searchLinks()
     }
 
+    if (!textInput.current?.value) {
+      searchLinks()
+    }
+
 
     if (url === '' && isValidHttpUrl(formattedUrl?.href)) {
       const linksFromLocalStorage = localStorage.getItem('links')
@@ -74,7 +78,7 @@ export default function Home() {
 
     // const links = JSON.parse(localStorage.getItem('links') || '[]') as Link[];
     // const linkUrls: Link[] = filteredLinks.map((link) => ({ id: link.id, title: link.title, url: link.url }));
-    setLinks(filteredLinks);
+    setLinks(filteredLinks)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,25 +160,26 @@ export default function Home() {
         reverseOrder={false}
       />
 
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-          <div className="flex justify-center">
-            <h1 className='my-2 text-2xl md:text-3xl font-bold'>LinkSave</h1>
-          </div>
+      <main className="flex min-h-screen flex-col items-center justify-between py-24 px-8">
+        <div className="w-full items-center justify-between font-mono text-sm lg:flex lg:flex-col">
+          <div className='w-full md:w-3/4 lg:w-1/2 flex flex-col items-center justify-center mx-auto'>
+            <div className="flex justify-center">
+              <h1 className='my-2 text-2xl md:text-3xl font-bold'>LinkSave</h1>
+            </div>
 
-          {/* SEARCH */}
-          <input
-            ref={textInput}
-            value={url}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            type="text"
-            name="url"
-            id="url"
-            className='w-full border bg-gray-100 outline-none focus:outline-none focus:ring rounded-lg
+            {/* SEARCH */}
+            <input
+              ref={textInput}
+              value={url}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              type="text"
+              name="url"
+              id="url"
+              className='w-full border bg-gray-100 outline-none focus:outline-none focus:ring rounded-lg
         py-4 px-4'
-            placeholder="Paste link here or Search" />
-
+              placeholder="Paste link here or Search" />
+          </div>
           {links?.length > 0 && (
             <Links links={links} deleteLink={deleteLink} />
           )}
