@@ -180,7 +180,7 @@ export default function Home() {
               id="url"
               className='w-full border bg-gray-100 outline-none focus:outline-none focus:ring rounded-lg
         py-4 px-4'
-              placeholder="Paste link here or Search" />
+              placeholder="Paste link to save or Search" />
           </div>
 
           {links?.length > 0 && (
