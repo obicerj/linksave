@@ -9,6 +9,7 @@ import { formatUrl, isValidHttpUrl, fetchUrlMetadata } from './utils/helper'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 import { Toaster, toast } from 'react-hot-toast'
+import { RiLink } from "react-icons/ri";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -163,8 +164,9 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between py-24 px-8">
         <div className="w-full items-center justify-between font-mono text-sm lg:flex lg:flex-col">
           <div className='w-full md:w-3/4 lg:w-1/2 flex flex-col items-center justify-center mx-auto'>
-            <div className="flex justify-center">
-              <h1 className='my-2 text-2xl md:text-3xl font-bold'>LinkSave</h1>
+            <div className="flex flex-row justify-center items-center gap-1.5 mb-2">
+              <RiLink className='w-8 h-8 text-blue-500' />
+              <h1 className='my-2 text-2xl md:text-3xl '>LinkSave</h1>
             </div>
 
             {/* SEARCH */}
@@ -180,6 +182,7 @@ export default function Home() {
         py-4 px-4'
               placeholder="Paste link here or Search" />
           </div>
+
           {links?.length > 0 && (
             <Links links={links} deleteLink={deleteLink} />
           )}
