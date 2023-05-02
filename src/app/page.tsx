@@ -105,7 +105,7 @@ export default function Home() {
     reloadLinks(linksCollection)
   }
 
-  function reloadLinks(links: SetStateAction<Link[]>) {
+  function reloadLinks(links: Link[]) {
     if (!links) {
       return
     }
