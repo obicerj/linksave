@@ -44,7 +44,6 @@ export const fetchUrlMetadata = async (url) => {
     );
 
     if (!response.ok) {
-      // add toast error
       toast.error("You have entered an invalid URL");
       return false;
     }

@@ -1,17 +1,14 @@
 'use client'
 
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import LinkCard from './components/LinkCard'
 import Links from './components/Links'
-import { SetStateAction, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { formatUrl, isValidHttpUrl, fetchUrlMetadata } from './utils/helper'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 import { Toaster, toast } from 'react-hot-toast'
 import { RiLink } from "react-icons/ri";
-
-const inter = Inter({ subsets: ['latin'] })
+import { HiHeart } from "react-icons/hi2";
 
 type Link = {
   id: string,
@@ -52,18 +49,12 @@ export default function Home() {
       searchLinks()
     }
 
-    if (!textInput.current?.value) {
-      searchLinks()
-    }
-
 
     if (url === '' && isValidHttpUrl(formattedUrl?.href)) {
       const linksFromLocalStorage = localStorage.getItem('links')
       linksCollection = linksFromLocalStorage ? JSON.parse(linksFromLocalStorage) : []
       setLinks(linksCollection)
-      // if(textInput.current) {
       textInput.current!.focus()
-      // }
     }
 
     if (isValidHttpUrl(formattedUrl?.href)) {
@@ -75,10 +66,7 @@ export default function Home() {
     const linksFromLocalStorage = localStorage.getItem('links');
     const links: Link[] | null = linksFromLocalStorage ? JSON.parse(linksFromLocalStorage) : [];
     const filteredLinks: Link[] = links?.filter((link: Link) => link.title?.toLowerCase().includes(url.toLowerCase())) ?? []
-    //  setLinks(filteredLinks)
 
-    // const links = JSON.parse(localStorage.getItem('links') || '[]') as Link[];
-    // const linkUrls: Link[] = filteredLinks.map((link) => ({ id: link.id, title: link.title, url: link.url }));
     setLinks(filteredLinks)
   }
 
@@ -106,7 +94,6 @@ export default function Home() {
     }
 
     linksCollection = await fetchUrlMetadata(formattedUrl)
-    // const linkUrls: Link[] = linksCollection.map(link => ({ title: link.title || '', url: link.url || '' }))
     reloadLinks(linksCollection)
   }
 
@@ -122,7 +109,6 @@ export default function Home() {
 
   function checkLinkExists(url: URL) {
     const linksFromLocalStorage = localStorage.getItem('links')
-    // const links: Link[] | null = linksFromLocalStorage ? JSON.parse(linksFromLocalStorage) : []
 
     if (!linksFromLocalStorage) {
       return false
@@ -188,6 +174,10 @@ export default function Home() {
           )}
         </div>
       </main>
+
+      <footer className="text-center py-4">
+        <p className="text-xs flex flex-row gap-1 justify-center item-center text-gray-600">Made with <HiHeart className="text-lg text-red-600" /> by <a href="https://jestoni.vercel.app">Jestoni</a></p>
+      </footer>
     </>
   )
 }
